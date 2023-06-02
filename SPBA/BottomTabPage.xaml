@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="SPBA.BottomTabPage"
+            Title="BottomTabPage"
+            BackgroundColor="White"
+            xmlns:views="clr-namespace:SPBA.Views"
+            xmlns:pages="clr-namespace:SPBA.Pages"
+            xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.IsSwipePagingEnabled="False"
+            android:TabbedPage.IsSmoothScrollEnabled="False"
+            SelectedTabColor="{x:StaticResource Green45}"
+            UnselectedTabColor="{x:StaticResource DarkGray}"
+            >
+
+    <!--<ContentPage Title="Main">
+        <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent Selector="#app" ComponentType="{x:Type pages:Index}" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </ContentPage>
+
+    <ContentPage Title="Counter">
+        <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent Selector="#app" ComponentType="{x:Type pages:Counter}" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </ContentPage>
+
+    <ContentPage Title="Counter" IconImageSource="bell_icon.png">
+        <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent Selector="#app" ComponentType="{x:Type pages:FetchData}" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </ContentPage>-->
+    
+    <views:MainPage IconImageSource="home_icon.png"/>
+    <views:MainView IconImageSource="home_icon.png"/>
+</TabbedPage>

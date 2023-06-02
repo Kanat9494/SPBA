@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SPBA.Views.Controls.PopularShopsRow"
+             xmlns:models="clr-namespace:SPBA.Models"
+             x:Name="this">
+    <StackLayout
+        BindingContext="{x:Reference this}"
+        HeightRequest="200"
+        Margin="10, 0, 0, 0">
+        <CollectionView
+            ItemsSource="{Binding PopularShops}"
+            HorizontalOptions="FillAndExpand">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"
+                                   />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate
+                    x:DataType="models:PopularProduct">
+                    <Border
+                        Margin="0, 0, 10, 0"
+                        HeightRequest="170"
+                        WidthRequest="100"
+                        StrokeShape="RoundRectangle 10"
+                        Stroke="Transparent"
+                        StrokeThickness="0"
+                        BackgroundColor="#ffebcc">
+                        <StackLayout
+                            Padding="15"
+                            HorizontalOptions="CenterAndExpand">
+                            <Border
+                                Stroke="TransParent"
+                                StrokeShape="RoundRectangle 10"
+                                StrokeThickness="0"
+                                HeightRequest="90"
+                                HorizontalOptions="Center"
+                                WidthRequest="90">
+                                <Image
+                                    Aspect="AspectFill"
+                                    Source="{Binding ImageUrl}"/>
+                            </Border>
+
+                            <Label
+                                LineBreakMode="NoWrap"
+                                WidthRequest="90"
+                                HeightRequest="100"
+                                HorizontalOptions="CenterAndExpand"
+                                Margin="0, 15"
+                                VerticalOptions="Center"
+                                Text="{Binding ProductName}"
+                                FontFamily="OpenSansRegular"
+                                TextColor="Black"/>
+                        </StackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentView>

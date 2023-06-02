@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SPBA.Views.MainPage"
+             Title="MainPage"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:viewModel="clr-namespace:SPBA.ViewModels"
+             xmlns:models="clr-namespace:SPBA.Models"
+             xmlns:controls="clr-namespace:SPBA.Views.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             >
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{x:StaticResource Green45}"/>
+    </ContentPage.Behaviors>
+    
+    <Grid
+        >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollView
+            Grid.Row="1"
+            VerticalScrollBarVisibility="Never"
+            Scrolled="OnScrollViewScrolled"
+            Margin="0, -60, 0, 0">
+            <StackLayout>
+
+                <StackLayout
+                    Margin="0, 45, 0, 0">
+                    <ActivityIndicator
+                        IsRunning="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=IsBusy}"
+                        IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=IsBusy}"
+                        Color="{x:StaticResource Red60}"
+                        Margin="0, 20, 0, 0"/>
+
+                    <controls:CategoryRow
+                    Categories="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=Categories}"
+                    CategorySelected="Category_Selected"/>
+
+                    <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="10"
+                    HeightRequest="50">
+                        <Label
+                        Text="Самые популярные товары:"
+                        FontSize="16"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center" 
+                        FontFamily="OpenSansSemibold"
+                        TextColor="Black"/>
+
+                        <Label
+                        Text="Все"
+                        FontSize="16"
+                        VerticalOptions="Center"
+                        HorizontalOptions="EndAndExpand"
+                        Margin="5"
+                        FontFamily="OpenSansSemibold"
+                        TextColor="Black"/>
+                    </StackLayout>
+
+                    <controls:PopularProductsRow
+                        Products="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=PopularProducts}"/>
+
+                    <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="10"
+                    HeightRequest="50">
+                        <Label
+                        Text="Скидки, магазины"
+                        FontSize="16"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center" 
+                        FontFamily="OpenSansSemibold"
+                        TextColor="Black"/>
+
+                        <Label
+                        Text="Все"
+                        FontSize="16"
+                        VerticalOptions="Center"
+                        HorizontalOptions="EndAndExpand"
+                        Margin="5"
+                        FontFamily="OpenSansSemibold"
+                        TextColor="Black"/>
+                    </StackLayout>
+
+                    <controls:PopularShopsRow
+                        PopularShops="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=PopularProducts}"/>
+
+                    <Label
+                    Text="Товары"
+                    Margin="10"
+                    FontFamily="OpenSansSemibold"
+                    FontSize="18"/>
+                </StackLayout>
+                <!--<ListView
+        ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=Products}"
+        SeparatorVisibility="None"
+        VerticalScrollBarVisibility="Never"
+        RowHeight="235"
+        HasUnevenRows="False"
+            VerticalOptions="FillAndExpand">
+                <ListView.Header>
+                    <Label 
+                    Text="Test"/>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="180"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border
+                        Stroke="TransParent"
+                        StrokeShape="RoundRectangle 10"
+                        StrokeThickness="0"
+                        HeightRequest="190"
+                        HorizontalOptions="Center"
+                        WidthRequest="150"
+                            Grid.Column="0">
+                                    <Image
+                            Aspect="AspectFill"
+                            Source="{Binding ImageUrl}"/>
+                                </Border>
+
+                                <Label
+                            Text="{Binding ProductName}"
+                            FontSize="18"
+                            FontFamily="OpenSansSemibold"
+                            HorizontalOptions="Center"
+                            Margin="0, 15, 0, 0"
+                            Grid.Column="1"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+
+                <CollectionView
+                ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=PopularProducts}">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                        Orientation="Vertical"
+                        HorizontalItemSpacing="0"
+                        VerticalItemSpacing="10"
+                        Span="2"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate
+                        x:DataType="models:Product">
+                            <StackLayout
+                            HeightRequest="320"
+                            Margin="10, 0, 0, 14">
+                                <Border
+                                Stroke="TransParent"
+                                StrokeShape="RoundRectangle 8"
+                                StrokeThickness="0"
+                                HeightRequest="210"
+                                HorizontalOptions="Center"
+                                WidthRequest="170">
+                                    <Image
+                                    Aspect="AspectFill"
+                                    Source="{Binding ImageUrl}"/>
+                                </Border>
+
+                                <Label
+                                Text="{Binding ProductName}"
+                                FontSize="18"
+                                FontFamily="OpenSansSemibold"
+                                HorizontalOptions="Start"
+                                Margin="15, 15, 0, 0"
+                                TextColor="{x:StaticResource DarkPink50}"/>
+
+                                <Label
+                                Text="Aika Made"
+                                FontSize="15"
+                                FontFamily="OpenSansSemibold"
+                                HorizontalOptions="Start"
+                                Margin="15, 5, 0, 0"
+                                TextColor="#323232"/>
+
+                                <Label
+                                Text="Куртки, самые настоящие tttwe подарки, та.юк это все го. И к тому же это лучшый подарок"
+                                FontSize="12"
+                                FontFamily="OpenSansSemibold"
+                                HorizontalOptions="Start"
+                                Margin="15, 5, 0, 0"
+                                TextColor="#525252"
+                                MaxLines="2"
+                                LineBreakMode="WordWrap"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+
+        <StackLayout
+            Grid.Row="0"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="{x:StaticResource Green45}"
+                Orientation="Horizontal"
+            x:Name="topContent">
+            <Border
+                    StrokeShape="RoundRectangle 10"
+                    Margin="10, 5, 5, 5"
+                StrokeThickness="0">
+                <SearchBar
+                    Placeholder="Поиск"
+                    PlaceholderColor="#4d4d33"
+                    FontSize="17"
+                    FontFamily="OpenSansRegular"/>
+            </Border>
+
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="EndAndExpand">
+                <Image 
+                    Source="second_white_bell_icon.png"
+                    HeightRequest="30"
+                    WidthRequest="30"
+                    VerticalOptions="Center"
+                    HorizontalOptions="EndAndExpand"
+                    Margin="0"/>
+
+                <Border
+                    StrokeShape="RoundRectangle 50"
+                    BackgroundColor="{x:StaticResource Red50}"
+                    Padding="5"
+                    HeightRequest="25"
+                    WidthRequest="25"
+                    Margin="-15, 2, 5, 10"
+                    >
+                    <Label
+                        Text="30"
+                        HorizontalOptions="Center"
+                        TextColor="{x:StaticResource White}"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"
+                        FontSize="10"/>
+                </Border>
+            </StackLayout>
+        </StackLayout>
+        <!-- Слой с прозрачным фоном -->
+    </Grid>
+</ContentPage>
