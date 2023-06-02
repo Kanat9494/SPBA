@@ -8,6 +8,7 @@
              xmlns:models="clr-namespace:SPBA.Models"
              xmlns:controls="clr-namespace:SPBA.Views.Controls"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:pages="clr-namespace:SPBA.Pages"
              >
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="{x:StaticResource Green45}"/>
@@ -25,7 +26,7 @@
             VerticalScrollBarVisibility="Never"
             Scrolled="OnScrollViewScrolled"
             Margin="0, -60, 0, 0">
-            <StackLayout>
+            <!--<StackLayout>
 
                 <StackLayout
                     Margin="0, 45, 0, 0">
@@ -98,59 +99,10 @@
                     FontSize="18"
                         TextColor="Black"/>
                 </StackLayout>
-                <!--<ListView
-        ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=Products}"
-        SeparatorVisibility="None"
-        VerticalScrollBarVisibility="Never"
-        RowHeight="235"
-        HasUnevenRows="False"
-            VerticalOptions="FillAndExpand">
-                <ListView.Header>
-                    <Label 
-                    Text="Test"/>
-                </ListView.Header>
-
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid Padding="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="180"/>
-                                </Grid.RowDefinitions>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Border
-                        Stroke="TransParent"
-                        StrokeShape="RoundRectangle 10"
-                        StrokeThickness="0"
-                        HeightRequest="190"
-                        HorizontalOptions="Center"
-                        WidthRequest="150"
-                            Grid.Column="0">
-                                    <Image
-                            Aspect="AspectFill"
-                            Source="{Binding ImageUrl}"/>
-                                </Border>
-
-                                <Label
-                            Text="{Binding ProductName}"
-                            FontSize="18"
-                            FontFamily="OpenSansSemibold"
-                            HorizontalOptions="Center"
-                            Margin="0, 15, 0, 0"
-                            Grid.Column="1"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
+                
 
                 <CollectionView
-                ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=PopularProducts}">
+                    ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=PopularProducts}">
 
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout
@@ -207,6 +159,14 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+            </StackLayout>-->
+
+            <StackLayout>
+                <BlazorWebView HostPage="wwwroot/index.html">
+                    <BlazorWebView.RootComponents>
+                        <RootComponent Selector="#app" ComponentType="{x:Type pages:Index}" />
+                    </BlazorWebView.RootComponents>
+                </BlazorWebView>
             </StackLayout>
         </ScrollView>
 
