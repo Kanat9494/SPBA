@@ -36,9 +36,6 @@ internal class MainViewModel : BaseViewModel
     private async Task OnCategorySelected(CategorySelectedEventArgs e)
     {
         var category = HandleSelectedCategory(e);
-        //if (category != null)
-        //    await Shell.Current.GoToAsync("TestPage");
-
         if (category != null)
             await Application.Current.MainPage.Navigation.PushAsync(new SecondPage());
     }

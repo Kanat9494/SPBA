@@ -39,5 +39,5 @@
     </ContentPage>-->
     
     <views:MainPage IconImageSource="home_icon.png" Title="Главная"/>
-    <views:MainView IconImageSource="home_icon.png" Title="Аккаунт"/>
+    <views:TestPage IconImageSource="home_icon.png" Title="Аккаунт"/>
 </TabbedPage>
