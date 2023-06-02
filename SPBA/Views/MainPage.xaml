@@ -36,14 +36,14 @@
                         Margin="0, 20, 0, 0"/>
 
                     <controls:CategoryRow
-                    Categories="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=Categories}"
-                    CategorySelected="Category_Selected"/>
+                        Categories="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=Categories}"
+                        CategorySelected="Category_Selected"/>
 
                     <StackLayout
-                    Orientation="Horizontal"
-                    HorizontalOptions="FillAndExpand"
-                    Margin="10"
-                    HeightRequest="50">
+                        Orientation="Horizontal"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="10"
+                        HeightRequest="50">
                         <Label
                         Text="Самые популярные товары:"
                         FontSize="16"
